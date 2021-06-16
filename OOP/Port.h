@@ -16,7 +16,7 @@ public:
    
     void DeleteShip(int pos);
 
-  virtual ~Port();
+    virtual ~Port();
    
 private:
     vector<Ship*> m_Port;

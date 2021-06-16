@@ -6,29 +6,36 @@
     }
      PassengerShip::~PassengerShip()
     {
-        cout << "Удаляем корабль " << this->GetName() << endl;
+        cout << "Удаляем пассажирский корабль " << this->GetName() << endl;
     }
     bool PassengerShip::EnoughBoats()
     {
-        if ((GetCrewNumber() + m_NumberOfPassengers) > (m_NumberOfBoats * m_BoatCapacity))
+        if ((GetCrewNumber() + m_NumberOfPassengers) <= (m_NumberOfBoats * m_BoatCapacity))
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
      int PassengerShip::IncreaseBoatsNumber() 
     {
-        int PeopleWithoutSeats = (m_NumberOfPassengers + GetCrewNumber()) - (m_NumberOfBoats * m_BoatCapacity);
-        int MissingBoats = PeopleWithoutSeats / m_BoatCapacity;
-        if (PeopleWithoutSeats % m_BoatCapacity != 0)
-        {
-            MissingBoats++;
-        }
-        m_NumberOfBoats += MissingBoats;
-        return MissingBoats;
+         if (EnoughBoats())
+         {
+             return 0;
+         }
+         else
+         {
+             int PeopleWithoutSeats = (m_NumberOfPassengers + GetCrewNumber()) - (m_NumberOfBoats * m_BoatCapacity);
+             int MissingBoats = PeopleWithoutSeats / m_BoatCapacity;          
+             if (PeopleWithoutSeats % m_BoatCapacity != 0)
+             {
+                 MissingBoats++;
+             }
+             m_NumberOfBoats += MissingBoats;
+             return MissingBoats;  
+         }
     }
 
      void PassengerShip::Info() const

@@ -17,7 +17,7 @@ public:
     
     Ship(double WaterDisplacement, double EnginePower, string Name, string HomePort, int CrewNumber);
 
-    int GetCrewNumber();
+    int GetCrewNumber() const;
 
     void SetEnginePower(double EnginePower);
     
@@ -25,7 +25,7 @@ public:
 
     void SetCrewNumber(double CrewNumber);
 
-    string GetName();
+    string GetName() const;
 
     virtual ~Ship();
   

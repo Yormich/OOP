@@ -8,7 +8,7 @@
     {
     }
 
-    int Ship::GetCrewNumber()
+    int Ship::GetCrewNumber() const
     {
         return m_NumberOfCrew;
     }
@@ -28,7 +28,7 @@
         m_NumberOfCrew = CrewNumber;
     }
 
-    string Ship::GetName()
+    string Ship::GetName() const
     {
         return m_Name;
     }

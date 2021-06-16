@@ -23,10 +23,10 @@
     void Port::ShowShips()
     {
         int pos = 1;       
-        for (auto Ship : m_Port)
+        for (auto ship : m_Port)
         {
             cout << pos << " - ";
-            Ship->Info();
+            ship->Info();
             cout << endl;
             pos++;
         }
@@ -34,15 +34,16 @@
 
     Port::~Port()
     {
-        for (auto Ship : m_Port)
+        for (auto ship : m_Port)
         {
-            delete[] Ship;
+            delete ship;
         }
     }
 
     void Port::DeleteShip(int pos)
     {
         auto iter = m_Port.begin();
+        delete m_Port.at(pos - 1);
         m_Port.erase(iter + pos-1);
     }
     
