@@ -20,7 +20,7 @@
         }
     }
 
-    void Port::ShowShips()
+    void Port::ShowShips() const
     {
         int pos = 1;       
         for (auto ship : m_Port)

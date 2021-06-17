@@ -1,8 +1,5 @@
 #include "Ship.h"
-
-    Ship::Ship():m_Displacement(19876.12), m_EnginePower(13200.5), m_Name("Aurora"), m_HomePort("Odessa"), m_NumberOfCrew(711)
-    {
-    }
+  
     Ship::Ship(double WaterDisplacement, double EnginePower, string Name, string HomePort, int CrewNumber)
         :m_Displacement(WaterDisplacement), m_EnginePower(EnginePower), m_Name(Name), m_HomePort(HomePort), m_NumberOfCrew(CrewNumber)
     {
@@ -40,6 +37,6 @@
     void Ship::Info() const
     {
         
-        cout << "Корабль с именем " << m_Name << " имеет " << m_Displacement << " водоизмещение, " << m_EnginePower << " мощность двигателя, " << m_NumberOfCrew << " членов экипажа и основан в " << m_HomePort << "." << endl;
+        cout << "Ship named " << m_Name << " has " << m_Displacement << " displacement, " << m_EnginePower << " engine power, " << m_NumberOfCrew << " crew and spelled out in " << m_HomePort << "." << endl;
     }
     

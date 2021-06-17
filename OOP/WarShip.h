@@ -18,6 +18,8 @@ public:
 
     bool AttackOtherShips(int Might) const;
 
+    virtual ~WarShip();
+
     virtual void Info() const override;
 };
 

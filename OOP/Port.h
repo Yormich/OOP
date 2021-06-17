@@ -12,7 +12,7 @@ public:
 
     void ModifyShip(int pos,int option, int number);
 
-    void ShowShips();
+    void ShowShips() const;
    
     void DeleteShip(int pos);
 

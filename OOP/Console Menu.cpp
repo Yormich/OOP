@@ -7,12 +7,12 @@ using namespace std;
 
 void PrintMainMenu()
 {
-    cout << " Выберите дальнейшую опцию:" << endl;
-    cout << "|  1 - Создать корабль.        |" << endl;
-    cout << "|  2 - Модифицировать корабль. |" << endl;
-    cout << "|  3 - Просмотреть корабли.    |" << endl;
-    cout << "|  4 - Удалить корабль.        |" << endl;
-    cout << "|  5 - Завершить работу.       |" << endl;
+    cout << "Select further option: " << endl;
+    cout << "|  1 - Create a ship.     |" << endl;
+    cout << "|  2 - Modify the ship.   |" << endl;
+    cout << "|  3 - View ships.        |" << endl;
+    cout << "|  4 - Remove the ship.   |" << endl;   
+    cout << "|  5 - Complete the work. |" << endl;
 }
 
 int GetOption(int OptionsCount)
@@ -22,7 +22,7 @@ int GetOption(int OptionsCount)
     cin >> input;
     while (stoi(input) < 1 || stoi(input) > OptionsCount)
     {
-        cout << "Неверный ввод, повторите попытку." << endl;
+        cout << "Invalid entry, please try again." << endl;
         input.clear();
         cin >> input;
     }
@@ -33,10 +33,10 @@ int GetOption(int OptionsCount)
 
 void CreateShipMenu(Port& port)
 {
-    cout << "Выберите тип корабля, который вы хотите добавить: " << endl;
-    cout << "|  1 - Пассажирский корабль.  |" << endl;
-    cout << "|  2 - Грузовой корабль.      |" << endl;
-    cout << "|  3 - Военный корабль.       |" << endl;
+    cout << "Select the type of ship you want to add: " << endl;
+    cout << "|  1 - Passenger ship. |" << endl;
+    cout << "|  2 - Cargo ship.     |" << endl;
+    cout << "|  3 - Warship.        |" << endl;
     double Displacement;
     double EnginePower;
     string Name;
@@ -58,104 +58,116 @@ void CreateShipMenu(Port& port)
     int MightOfEnemyShips; // для военного корабля
     random_device rd;
     mt19937 mt(rd());
-    uniform_int_distribution<int> DistForEnShips(1,4);
+    uniform_int_distribution<int> DistForEnShips(1, 4);
     uniform_int_distribution<int> DistForPowerOfEnShips(1, 250);
-    uniform_int_distribution<int> DistForWeapon(0,3);
+    uniform_int_distribution<int> DistForWeapon(0, 3);
     switch (variant)
     {
-    case 1:      
-        cout << "Введите водоизмещение." << endl;
+    case 1:
+        cout << "Enter the displacement." << endl;
         cin >> Displacement;
-        cout << "Введите мощность двигателя." << endl;
+        cout << "Enter the engine power." << endl;
         cin >> EnginePower;
-        cout << "Введите имя корабля." << endl;
+        cout << "Enter the name of the ship." << endl;
         cin >> Name;
-        cout << "Введите количество членов экипажа." << endl;
+        cout << "Enter the number of crew members." << endl;
         cin >> NumberOfCrew;
-        cout << "Введите домашний порт." << endl;
+        cout << "Enter home port." << endl;
         cin >> HomePort;
-        cout << "Bведите количество пассажиров." << endl;
+        cout << "Enter the number of passengers." << endl;
         cin >> NumberOfPassengers;
-        cout << "Введите количество шлюпок." << endl;
+        cout << "Enter the number of boats." << endl;
         cin >> NumberOfBoats;
-        cout << "Введите вместимость шлюпок." << endl;
+        cout << "Enter the capacity of the boats." << endl;
         cin >> BoatCapacity;
+        if (Displacement < 0 || EnginePower < 0 || NumberOfCrew < 0 || NumberOfPassengers < 0 || NumberOfBoats < 0 << BoatCapacity < 0)
+        {
+            throw exception();
+        }
         ps = new PassengerShip(Displacement, EnginePower, Name, HomePort, NumberOfCrew, NumberOfPassengers, NumberOfBoats, BoatCapacity);
         port.AddShip(ps);
         MissingBoats = ps->IncreaseBoatsNumber();
         if (MissingBoats == 0)
         {
-            cout << "Количества лодок хватает на пассажиров и экипаж." << endl;
+            cout << "The number of boats is enough for passengers and crew." << endl;
         }
         else
         {
-            cout << "Количества лодок не хватило на пассажиров и экипаж.Оно было увеличено на " << MissingBoats << " лодок." << endl;
+            cout << "The number of boats was not enough for passengersand crew.It was increased by " << MissingBoats << " boats." << endl;
         }
         break;
     case 2:      
-        cout << "Введите водоизмещение." << endl;
+        cout << "Enter the displacement." << endl;
         cin >> Displacement;
-        cout << "Введите мощность двигателя." << endl;
+        cout << "Enter the engine power." << endl;
         cin >> EnginePower;
-        cout << "Введите имя корабля." << endl;
+        cout << "Enter the name of the ship." << endl;
         cin >> Name;
-        cout << "Введите количество членов экипажа." << endl;
+        cout << "Enter the number of crew members." << endl;
         cin >> NumberOfCrew;
-        cout << "Введите домашний порт." << endl;
+        cout << "Enter home port." << endl;
         cin >> HomePort;
-        cout << "Введите грузоподъёмность корабля" << endl;
+        cout << "Enter the cargo capacity of the ship " << endl;
         cin >> CarryingCapacity;
+        if (Displacement < 0 || EnginePower < 0 || NumberOfCrew < 0 || CarryingCapacity<0)
+        {
+            throw exception();
+        }
         cs = new CargoShip(Displacement, EnginePower, Name, HomePort, NumberOfCrew, CarryingCapacity);
         port.AddShip(cs);
-        cout << "Хотите ли вы добавить груз на корабль?1 - Да, 2 - Нет." << endl;
+        cout << "Do you want to add cargo to the ship? 1 - Yes, 2 - No." << endl;
         cin >> input;
-        while (input != 2||(input >2 && input <1))
+        while (input != 2|| input >2 || input <1)
         {
-            cout << "Введите приблизительный вес груза, который вы хотите добавить на " << cs->GetName() << ", он не должен превышать ";
+            cout << "Enter the approximate weight of the shipment you want to add to " << cs->GetName() << ", it should not exceed ";
             cout << cs->GetRemainingCapacity() << "." << endl;
             cin >> Cargo;
-            if (cs->AddCargo(Cargo) > 0)
+            if (cs->AddCargo(Cargo) >= 0)
             {
-                cout << "Оставшееся кол-во грузоподъёмности: " << cs->AddCargo(Cargo) << "." << endl;
+                cout << "Remaining capacity: " << cs->GetRemainingCapacity() << "." << endl;
             }
             else
             {
                 throw exception();
             }
-            cout << "Хотите ли вы добавить груз на корабль?1 - Да, 2 - Нет." << endl;      
+            cout << "Do you want to add cargo to the ship? 1 - Yes, 2 - No." << endl;      
             cin >> input;
         }
         break;
     
     case 3:     
-        cout << "Введите водоизмещение." << endl;
+        cout << "Enter the displacement." << endl;
         cin >> Displacement;
-        cout << "Введите мощность двигателя." << endl;
+        cout << "Enter the engine power." << endl;
         cin >> EnginePower;
-        cout << "Введите имя корабля." << endl;
+        cout << "Enter the name of the ship." << endl;
         cin >> Name;
-        cout << "Введите количество членов экипажа." << endl;
+        cout << "Enter the number of crew members." << endl;
         cin >> NumberOfCrew;
-        cout << "Введите домашний порт." << endl;
+        cout << "Enter home port." << endl;
         cin >> HomePort;
+        if (Displacement < 0 || EnginePower < 0 || NumberOfCrew < 0)
+        {
+            throw exception();
+        }
         Weapon = static_cast<TypeOfWeapon>(DistForWeapon(mt));
         ws= new WarShip(Displacement, EnginePower, Name, HomePort, NumberOfCrew, Weapon);
         port.AddShip(ws);
         MightOfEnemyShips = (DistForEnShips(mt) * DistForPowerOfEnShips(mt));
-        cout << "Поблизости обнаружился флот врага с примерной огневой мощью в " << MightOfEnemyShips << "." << endl;
-        cout << "Информация и вашем корабле: " << endl;
+        cout << "An enemy fleet was discovered nearby with an approximate firepower of" << MightOfEnemyShips << "." << endl;
+        cout << "Information about your ship: " << endl;
         ws->Info();
-        cout << "Хотите ли вы совершить атаку? 1 - Да, 2 - Нет." << endl;
+        cout << "Do you want to make an attack? 1 - Yes, 2 - No." << endl;
         cin >> input;
         if (input == 1)
         {
             if (ws->AttackOtherShips(MightOfEnemyShips))
             {
-                cout << "Атака закончилась успешно, флот противника разгромлен." << endl;
+                cout << "The attack ended successfully, the enemy's fleet was defeated. " << endl;
             }
             else
             {
-                cout << "Атака непредвиденно обернулась неудачей, вашему кораблю пришлось отступить." << endl;
+                cout << "The attack failed unexpectedly, and your ship had to retreat. " << endl;
             }
         }
         break;
@@ -166,32 +178,32 @@ void CreateShipMenu(Port& port)
 void ModifyShipsMenu(Port& port)
 {
     port.ShowShips();
-    cout << "Выберите корабль для модификации: " << endl;
+    cout << "Select a ship for modification: " << endl;
     int ShipPos;
     cin >> ShipPos;
-    cout << "Выберите, что вы хотите изменить: " << endl;
-    cout << "|  1 - Мощность двигателя        |" << endl;
-    cout << "|  2 - Водоизмещение             |" << endl;
-    cout << "|  3 - Количество членов экипажа |" << endl;
+    cout << "Choose what you want to change: " << endl;
+    cout << "|  1 - Engine power           |" << endl;
+    cout << "|  2 - Displacement           |" << endl;
+    cout << "|  3 - Number of crew members |" << endl;
     int option;
     cin >> option;
     switch (option)
     {
         case 1:
             int EnginePower;
-            cout << "Введите желаемую мощность двигателя: " << endl;
+            cout << "Enter the desired engine power: " << endl;
             cin >> EnginePower;
             port.ModifyShip(ShipPos, option, EnginePower);
             break;
         case 2:
             int WaterDisplacement;
-            cout << "Введите новое водоизмещение: " << endl;
+            cout << "Enter the new displacement: " << endl;
             cin >> WaterDisplacement;
             port.ModifyShip(ShipPos, option,WaterDisplacement);
             break;
         case 3:
             int CrewNumber;
-            cout << "Введите новое количество членов экипажа: " << endl;
+            cout << "Enter the new number of crew members: " << endl;
             cin >> CrewNumber;
             port.ModifyShip(ShipPos, option,CrewNumber);
             break;
@@ -202,7 +214,7 @@ void ModifyShipsMenu(Port& port)
 void DeleteShipsMenu(Port& port)
 {
     port.ShowShips();
-    cout << "Выберите корабль для удаления: " << endl;
+    cout << "Select a ship to delete : " << endl;
     int ShipPos;
     cin >> ShipPos;
     port.DeleteShip(ShipPos);
@@ -247,7 +259,7 @@ void ConsoleMenu()
         }
         catch (const exception&)
         {
-            cout << "Ой, вы создали ошибку в программе..." << endl;
+            cout << "You made an incorrect input, please try again" << endl;
         }
     } while (variant != 5);
 }

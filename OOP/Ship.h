@@ -13,7 +13,6 @@ private:
     int m_NumberOfCrew;
     string m_HomePort;
 public:
-    Ship();
     
     Ship(double WaterDisplacement, double EnginePower, string Name, string HomePort, int CrewNumber);
 

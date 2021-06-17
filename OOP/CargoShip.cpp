@@ -5,16 +5,29 @@ CargoShip::CargoShip(double WaterDisplacement, double EnginePower, string Name, 
     {
     }
 
-double CargoShip::AddCargo(double Cargo)
+int CargoShip::AddCargo(int Cargo)
 {
     m_RemainingCapacity -= Cargo;
     return GetRemainingCapacity();
 }
 
-double CargoShip::GetRemainingCapacity() const
+int CargoShip::GetRemainingCapacity() const
 {
     return m_RemainingCapacity;
 }
+
+CargoShip::~CargoShip()
+{
+    cout << "Destroying the cargo ship named " << this->GetName() << endl;
+}
+
+void CargoShip::Info() const
+{
+    Ship::Info();
+    cout << "Also, the cargo ship has a carrying capacity of " << m_CarryingCapacity << " points." << endl;
+}
+
+
 
 
 

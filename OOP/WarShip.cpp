@@ -1,7 +1,7 @@
 #include "WarShip.h"
 
 WarShip:: WarShip(double WaterDisplacement , double EnginePower , string Name , string HomePort , int CrewNumber, TypeOfWeapon gun)
-        : Ship(WaterDisplacement, EnginePower, Name, HomePort, CrewNumber), m_Weapon(static_cast<TypeOfWeapon>(rand() % 5))
+        : Ship(WaterDisplacement, EnginePower, Name, HomePort, CrewNumber), m_Weapon(static_cast<TypeOfWeapon>(rand() % 4))
     {
     }
 
@@ -35,23 +35,30 @@ bool WarShip::AttackOtherShips(int MightOfEnemyShips) const
     }
 }
 
+WarShip::~WarShip()
+{
+    cout << "Destroying WarShip named " << this->GetName() << endl;
+}
+
+
+
 void WarShip::Info() const
 {
     Ship::Info();
-    cout << "Военный корабль вооружён ";
+    cout << "The warship is armed ";
     switch (m_Weapon)
     {
         case MachineGuns:
-            cout << "пулемётами" << "." << endl;
+            cout << "by machineguns" << "." << endl;
             break;
         case Missiles:
-            cout << "ракетами" << "." << endl;
+            cout << "by missilies" << "." << endl;
             break;
         case UnderwaterMines:
-            cout << "противокорабельными минами" << "." << endl;
+            cout << "by underwater mines" << "." << endl;
             break;
         case Mortar:
-            cout << "мортирами" << "." << endl;
+            cout << "by mortars" << "." << endl;
             break;
     }
 }

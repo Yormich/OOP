@@ -6,9 +6,9 @@
     }
      PassengerShip::~PassengerShip()
     {
-        cout << "Удаляем пассажирский корабль " << this->GetName() << endl;
+        cout << "Destroying passenger ship named " << this->GetName() << endl;
     }
-    bool PassengerShip::EnoughBoats()
+    bool PassengerShip::EnoughBoats() const
     {
         if ((GetCrewNumber() + m_NumberOfPassengers) <= (m_NumberOfBoats * m_BoatCapacity))
         {
@@ -38,10 +38,10 @@
          }
     }
 
-     void PassengerShip::Info() const
+    void PassengerShip::Info() const
      {
          Ship::Info();
-         cout << "На пассажирском корабле находятся " << m_NumberOfPassengers << " пассажира, и корабль оснащён " << m_NumberOfBoats << " лодками вместимостью по " << m_BoatCapacity << " человек каждая." << endl;
+         cout << "On the passenger ship there are " << m_NumberOfPassengers << " passenger, and the ship is equipped" << m_NumberOfBoats << " boats with a capacity of" << m_BoatCapacity << " person each." << endl;
      }
 
     
