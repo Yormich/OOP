@@ -34,6 +34,14 @@
     {
     }
 
+    void Ship::ErrorCheck() const
+    {
+        if (m_Displacement < 0 || m_EnginePower < 0 || m_NumberOfCrew < 0 || m_Displacement > 20000 || m_EnginePower > 20000 || m_NumberOfCrew > 2000)
+        {
+            throw exception();
+        }
+    }
+
     void Ship::Info() const
     {
         

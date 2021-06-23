@@ -80,11 +80,8 @@ void CreateShipMenu(Port& port)
         cin >> NumberOfBoats;
         cout << "Enter the capacity of the boats." << endl;
         cin >> BoatCapacity;
-        if (Displacement < 0 || EnginePower < 0 || NumberOfCrew < 0 || NumberOfPassengers < 0 || NumberOfBoats < 0 << BoatCapacity < 0)
-        {
-            throw exception();
-        }
         ps = new PassengerShip(Displacement, EnginePower, Name, HomePort, NumberOfCrew, NumberOfPassengers, NumberOfBoats, BoatCapacity);
+        ps->ErrorCheck();
         port.AddShip(ps);
         MissingBoats = ps->IncreaseBoatsNumber();
         if (MissingBoats == 0)
@@ -109,11 +106,8 @@ void CreateShipMenu(Port& port)
         cin >> HomePort;
         cout << "Enter the cargo capacity of the ship " << endl;
         cin >> CarryingCapacity;
-        if (Displacement < 0 || EnginePower < 0 || NumberOfCrew < 0 || CarryingCapacity<0)
-        {
-            throw exception();
-        }
         cs = new CargoShip(Displacement, EnginePower, Name, HomePort, NumberOfCrew, CarryingCapacity);
+        cs->ErrorCheck();
         port.AddShip(cs);
         cout << "Do you want to add cargo to the ship? 1 - Yes, 2 - No." << endl;
         cin >> input;
@@ -146,12 +140,9 @@ void CreateShipMenu(Port& port)
         cin >> NumberOfCrew;
         cout << "Enter home port." << endl;
         cin >> HomePort;
-        if (Displacement < 0 || EnginePower < 0 || NumberOfCrew < 0)
-        {
-            throw exception();
-        }
         Weapon = static_cast<TypeOfWeapon>(DistForWeapon(mt));
         ws= new WarShip(Displacement, EnginePower, Name, HomePort, NumberOfCrew, Weapon);
+        ws->ErrorCheck();
         port.AddShip(ws);
         MightOfEnemyShips = (DistForEnShips(mt) * DistForPowerOfEnShips(mt));
         cout << "An enemy fleet was discovered nearby with an approximate firepower of" << MightOfEnemyShips << "." << endl;

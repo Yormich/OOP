@@ -24,6 +24,8 @@ public:
 
     void SetCrewNumber(double CrewNumber);
 
+    virtual void ErrorCheck() const;
+
     string GetName() const;
 
     virtual ~Ship();

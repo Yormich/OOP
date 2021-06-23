@@ -8,6 +8,14 @@
     {
         cout << "Destroying passenger ship named " << this->GetName() << endl;
     }
+     void PassengerShip::ErrorCheck() const
+     {
+         Ship::ErrorCheck();
+         if (m_NumberOfPassengers < 0 || m_NumberOfBoats < 0 || m_BoatCapacity < 0 || m_BoatCapacity > 50 || m_NumberOfPassengers > 3000 || m_NumberOfBoats > 1000)
+         {
+             throw exception();
+         }
+     }
     bool PassengerShip::EnoughBoats() const
     {
         if ((GetCrewNumber() + m_NumberOfPassengers) <= (m_NumberOfBoats * m_BoatCapacity))

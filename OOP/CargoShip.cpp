@@ -21,10 +21,19 @@ CargoShip::~CargoShip()
     cout << "Destroying the cargo ship named " << this->GetName() << endl;
 }
 
+void CargoShip::ErrorCheck() const
+{
+    Ship::ErrorCheck();
+    if (m_CarryingCapacity > 50000 || m_RemainingCapacity < 0 || m_CarryingCapacity < 0)
+    {
+        throw exception();
+    }
+}
+
 void CargoShip::Info() const
 {
     Ship::Info();
-    cout << "Also, the cargo ship has a carrying capacity of " << m_CarryingCapacity << " points." << endl;
+    cout << "Also, the cargo ship has a carrying capacity of " << m_CarryingCapacity << " points and remaining capacity of " << m_RemainingCapacity << " points. " << endl;
 }
 
 

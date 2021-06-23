@@ -15,6 +15,8 @@ public:
 
     virtual ~CargoShip();
 
+    virtual void ErrorCheck() const override;
+
     void Info() const override;
 };
 

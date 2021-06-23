@@ -40,6 +40,11 @@ WarShip::~WarShip()
     cout << "Destroying WarShip named " << this->GetName() << endl;
 }
 
+void WarShip::ErrorCheck() const
+{
+    Ship::ErrorCheck();
+}
+
 
 
 void WarShip::Info() const

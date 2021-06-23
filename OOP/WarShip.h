@@ -20,6 +20,8 @@ public:
 
     virtual ~WarShip();
 
+    virtual void ErrorCheck() const override;
+
     virtual void Info() const override;
 };
 

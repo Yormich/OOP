@@ -15,7 +15,7 @@ public:
 
     virtual ~PassengerShip();
 
-
+    virtual void ErrorCheck() const override;
 
     int IncreaseBoatsNumber();
 
