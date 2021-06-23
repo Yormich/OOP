@@ -16,6 +16,8 @@ public:
    
     void DeleteShip(int pos);
 
+    bool IsEmpty() const;
+
     virtual ~Port();
    
 private:

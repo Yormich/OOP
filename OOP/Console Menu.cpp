@@ -168,18 +168,24 @@ void CreateShipMenu(Port& port)
 
 void ModifyShipsMenu(Port& port)
 {
-    port.ShowShips();
-    cout << "Select a ship for modification: " << endl;
-    int ShipPos;
-    cin >> ShipPos;
-    cout << "Choose what you want to change: " << endl;
-    cout << "|  1 - Engine power           |" << endl;
-    cout << "|  2 - Displacement           |" << endl;
-    cout << "|  3 - Number of crew members |" << endl;
-    int option;
-    cin >> option;
-    switch (option)
+    if (port.IsEmpty())
     {
+        cout << "Port is empty. Returning to the main menu." << endl;        
+    }
+    else
+    {
+        port.ShowShips();
+        cout << "Select a ship for modification: " << endl;
+        int ShipPos;
+        cin >> ShipPos;
+        cout << "Choose what you want to change: " << endl;
+        cout << "|  1 - Engine power           |" << endl;
+        cout << "|  2 - Displacement           |" << endl;
+        cout << "|  3 - Number of crew members |" << endl;
+        int option;
+        cin >> option;
+        switch (option)
+        {
         case 1:
             int EnginePower;
             cout << "Enter the desired engine power: " << endl;
@@ -190,30 +196,45 @@ void ModifyShipsMenu(Port& port)
             int WaterDisplacement;
             cout << "Enter the new displacement: " << endl;
             cin >> WaterDisplacement;
-            port.ModifyShip(ShipPos, option,WaterDisplacement);
+            port.ModifyShip(ShipPos, option, WaterDisplacement);
             break;
         case 3:
             int CrewNumber;
             cout << "Enter the new number of crew members: " << endl;
             cin >> CrewNumber;
-            port.ModifyShip(ShipPos, option,CrewNumber);
+            port.ModifyShip(ShipPos, option, CrewNumber);
             break;
+        }
     }
-
 }
 
 void DeleteShipsMenu(Port& port)
 {
-    port.ShowShips();
-    cout << "Select a ship to delete : " << endl;
-    int ShipPos;
-    cin >> ShipPos;
-    port.DeleteShip(ShipPos);
+    if (port.IsEmpty())
+    {
+        cout << "Port is empty. Returning to the main menu." << endl;
+      
+    }
+    else
+    {
+        port.ShowShips();
+        cout << "Select a ship to delete : " << endl;
+        int ShipPos;
+        cin >> ShipPos;
+        port.DeleteShip(ShipPos);
+    }
 }
 
 void ShowShipsMenu(Port& port)
 {
-    port.ShowShips();
+    if (port.IsEmpty())
+    {
+        cout << "Port is empty. Returning to the main menu." << endl;   
+    }
+    else
+    {
+        port.ShowShips();
+    }
 }
 
 void ConsoleMenu()

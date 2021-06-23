@@ -46,4 +46,16 @@
         delete m_Port.at(pos - 1);
         m_Port.erase(iter + pos-1);
     }
+
+    bool Port::IsEmpty() const
+    {
+        if (m_Port.size() == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     
